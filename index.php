@@ -1,4 +1,4 @@
 
-<?php header('location: ./pelanggan/index.php') ?>
+<?php header('location: ./mahasiswa/index.php') ?>
 
     

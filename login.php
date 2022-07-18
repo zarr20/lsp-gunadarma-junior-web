@@ -8,35 +8,36 @@ session_start();
 
 // if ($_SESSION['role'] == 'admin') {
 //     header("Location: ./admin/index.php");
-// } elseif ($_SESSION['role'] == 'pelanggan') {
-//     header("Location: ./pelanggan/index.php");
+// } elseif ($_SESSION['role'] == 'mahasiswa') {
+//     header("Location: ./mahasiswa/index.php");
 // }
 
 
 
 if (isset($_POST['submit'])) {
     // echo "tersubmit";
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    echo  $email;
+
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
+        $_SESSION['role'] = $row['jenis_user'];
         $_SESSION['id_user'] = $row['id'];
 
         echo "<script>alert('Berhasil')</script>";
 
         if ($_SESSION['role'] == 'admin') {
             header("Location: ./admin/produk.php");
-        } elseif ($_SESSION['role'] == 'pelanggan') {
-            header("Location: ./pelanggan/index.php");
+        } elseif ($_SESSION['role'] == 'mahasiswa') {
+            header("Location: ./mahasiswa/index.php");
         }
     } else {
-        $_SESSION['error'] = "Email atau password Anda salah. Silahkan coba lagi!";
-        // echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+        $_SESSION['error'] = "Username atau password Anda salah. Silahkan coba lagi!";
     }
 }
 
@@ -110,13 +111,13 @@ if (isset($_POST['submit'])) {
 
     <main class="form-signin w-100 m-auto">
         <form action="" method="POST">
-            <h1>Toko Zarr</h1>
+            <h3 class="mb-3">Silahkan Masuk</h3>
 
           
             
 
             <div class="form-floating">
-                <input type="text" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="NPM">
                 <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating">
@@ -135,9 +136,6 @@ if (isset($_POST['submit'])) {
 
             <?php } ?>
 
-            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Daftar</a></p>
-
-            
             <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Masuk</button>
         </form>
     </main>

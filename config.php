@@ -3,7 +3,7 @@
 $server = "localhost";
 $user = "root";
 $pass = "";
-$database = "db_lsptugas";
+$database = "univ_jwp";
  
 $conn = mysqli_connect($server, $user, $pass, $database);
  
