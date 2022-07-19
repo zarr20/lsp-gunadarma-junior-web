@@ -4,9 +4,15 @@
 
 
 <div id="jadwal-kursus"  class="container py-5">
-    <h2 class="mb-4" style="font-size: 1.3rem;font-weight:bold">
-        Kursus Tersedia
+    <div class="d-flex gap-3 align-items-center mb-3">
+    <h2 class="" style="font-size: 1.3rem;font-weight:bold">
+        Data Kursus
     </h2>
+    <a href="/admin/data-kursus/tambah" class="btn btn-primary">
++ Tambah 
+</a>
+</div>
+
 
 
     <table class="table table-bordered table-striped table-hover">
@@ -15,7 +21,6 @@
                 <th scope="col">No</th>
                 <th scope="col">Kursus</th>
                 <th scope="col">Keterangan</th>
-                <th scope="col">Tanggal</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -25,12 +30,11 @@
                 <tr>
                     <td scope="row"><?= $i++ ?></td>
                     <td scope="row"><?= $data['nama_kursus'] ?></td>
-                    <!-- <td scope="row"><?= $data['lama_kursus'] ?></td> -->
                     <td scope="row"><?= $data['keterangan_kursus'] ?></td>
-                    <td scope="row"><?= $data['mulai'] ?> - <?= $data['selesai'] ?></td>
                     <td scope="row">
                         
-                    <a href="/daftar-kursus/<?= $data['id'] ?>" class="btn btn-primary">Daftar</a>
+                    <a href="/admin/data-kursus/<?= $data['id'] ?>" class="btn btn-primary">Edit</a>
+                    <a href="/admin/data-kursus/delete/<?= $data['id'] ?>" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             <?php endforeach ?>

@@ -4,7 +4,7 @@
             Universitas <b>Jewepe</b>
         </div>
 
-        <div>
+        <div class="d-flex gap-4">
             <a href="/" class="">Home</a>
             <?php  if(session()->get('logged_in')) {?>
                 <a href="/daftar-kursus" class="">Daftar Kursus</a>

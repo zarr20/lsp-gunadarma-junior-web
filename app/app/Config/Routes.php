@@ -45,7 +45,21 @@ $routes->get('/daftar-kursus/(:any)', 'Mahasiswa::daftar_form/$1');
 $routes->post('/daftar-kursus/(:any)', 'Mahasiswa::daftar_form_post/$1');
 $routes->get('/status-pendaftaran', 'Mahasiswa::status_pendaftaran');
 
-$routes->get('/admin', 'Admin::daftar');
+$routes->get('/admin', 'Admin::index');
+
+$routes->get('/admin/data-kursus', 'Admin::index');
+$routes->get('/admin/data-kursus/tambah', 'Admin::kursus_tambah');
+$routes->post('/admin/data-kursus/tambah', 'Admin::kursus_tambah_post');
+$routes->get('/admin/data-kursus/(:any)', 'Admin::kursus_edit/$1');
+$routes->post('/admin/data-kursus/edit/(:any)', 'Admin::kursus_edit_post/$1');
+
+$routes->get('/admin/data-kursus/delete/(:any)', 'Admin::kursus_delete/$1');
+$routes->get('/admin/data-jadwal-kursus', 'Admin::jadwal_kursus');
+
+$routes->get('/admin/data-pendaftaran', 'Admin::pendaftaran_peserta');
+
+$routes->get('/admin/data-mahasiswa', 'Admin::mahasiswa');
+
 
 // Route Auth
 $routes->get('/login', 'Auth::login');

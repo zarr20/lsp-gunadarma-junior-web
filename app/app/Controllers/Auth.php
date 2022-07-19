@@ -27,12 +27,25 @@ class Auth extends BaseController
         $data = $builder->get()->getFirstRow();
         if($data){
             if($password == $data->password) {
-                $ses_data = [
-                    'userid'       => $data->id,
-                    'logged_in'     => TRUE
-                ];
-                 $session->set($ses_data);
-                 return redirect()->to('/');
+                
+                 
+                if($data->jenis_user == "admin"){
+                    $ses_data = [
+                        'userid'       => $data->id,
+                        'logged_in'     => TRUE,
+                        'userrole'     => "admin"
+                    ];
+                    $session->set($ses_data);
+                    return redirect()->to('/admin');
+                }else {
+                    $ses_data = [
+                        'userid'       => $data->id,
+                        'logged_in'     => TRUE
+                    ];
+                    $session->set($ses_data);
+                    return redirect()->to('/');
+                }
+                
             }else{
                 $session->setFlashdata('error', 'Password salah!');
                 return redirect()->to('/login');
@@ -41,6 +54,7 @@ class Auth extends BaseController
             $session->setFlashdata('error', 'Username tidak ditemukan!');
             return redirect()->to('/login');
         }
+        
     }
 
     public function register()
